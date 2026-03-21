@@ -1,0 +1,20 @@
+Package: terrascopes5p
+Title: Download Sentinel-5P Data from Terrascope STAC API
+Version: 0.1.0
+Authors@R: person("Stefan", "Weingartner", role = c("aut", "cre"),
+                  email = "stefan.weingaertner@wifo.ac.at")
+Description: A general-purpose downloader for Sentinel-5P Level 3 products
+    (NO2, SO2, O3, etc.) from the Terrascope STAC API. Supports arbitrary
+    bounding boxes, date ranges, and collections. Authentication via
+    environment variables.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+    rstac,
+    httr,
+    data.table
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
