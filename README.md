@@ -54,6 +54,6 @@ result = download_s5p(
 | `search_s5p()` | Search STAC API for items matching bbox/dates |
 | `download_s5p()` | Search and download NetCDF files |
 
-## Default collection
+## Collection selection
 
-`terrascope-s5p-l3-no2-td-v2` (Sentinel-5P Level 3 NO2 Daily Product). Override via the `collection` parameter.
+The `collection` parameter is required. In interactive R sessions, omitting it will present a picker menu. In scripts, you must specify it explicitly (e.g., `collection = "terrascope-s5p-l3-no2-td-v2"`).

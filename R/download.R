@@ -7,8 +7,9 @@
 #' @param start_date Date or character coercible to Date.
 #' @param end_date Date or character coercible to Date.
 #' @param output_dir Character. Directory to save downloaded files.
-#' @param collection Character. STAC collection ID.
-#'   Default: `"terrascope-s5p-l3-no2-td-v2"`.
+#' @param collection Character. STAC collection ID, or `NULL` (default).
+#'   If `NULL`, presents an interactive picker in interactive sessions
+#'   or stops with an error in non-interactive mode.
 #' @param asset_keys Character vector. Asset names to try in order.
 #'   Default: `c("NO2", "NETCDF", "data", "nc", "asset")`.
 #' @param file_prefix Character. Prefix for downloaded file names.
@@ -24,11 +25,13 @@ download_s5p = function(bbox,
                         start_date,
                         end_date,
                         output_dir,
-                        collection = "terrascope-s5p-l3-no2-td-v2",
+                        collection = NULL,
                         asset_keys = c("NO2", "NETCDF", "data", "nc", "asset"),
                         file_prefix = "S5P",
                         credentials = terrascope_credentials(),
                         stac_url = "https://stac.terrascope.be/") {
+
+  collection = .resolve_collection(collection, stac_url)
 
   # Ensure output directory exists
   if (!dir.exists(output_dir)) {

@@ -46,8 +46,9 @@ list_s5p_collections = function(stac_url = "https://stac.terrascope.be/") {
 #' @param bbox Numeric vector of length 4: `c(xmin, ymin, xmax, ymax)`.
 #' @param start_date Date or character coercible to Date.
 #' @param end_date Date or character coercible to Date.
-#' @param collection Character. STAC collection ID.
-#'   Default: `"terrascope-s5p-l3-no2-td-v2"`.
+#' @param collection Character. STAC collection ID, or `NULL` (default).
+#'   If `NULL`, presents an interactive picker in interactive sessions
+#'   or stops with an error in non-interactive mode.
 #' @param stac_url Character. STAC API endpoint.
 #'   Default: `"https://stac.terrascope.be/"`.
 #' @param limit Integer. Page size for pagination. Default: 100.
@@ -56,9 +57,11 @@ list_s5p_collections = function(stac_url = "https://stac.terrascope.be/") {
 search_s5p = function(bbox,
                       start_date,
                       end_date,
-                      collection = "terrascope-s5p-l3-no2-td-v2",
+                      collection = NULL,
                       stac_url = "https://stac.terrascope.be/",
                       limit = 100L) {
+
+  collection = .resolve_collection(collection, stac_url)
 
   start_date = as.Date(start_date)
   end_date = as.Date(end_date)
