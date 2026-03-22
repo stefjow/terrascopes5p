@@ -6,3 +6,9 @@
 *.so
 *.dll
 tmp/
+*.nc
+.httr-oauth
+.Renviron
+data/
+.DS_Store
+Thumbs.db
